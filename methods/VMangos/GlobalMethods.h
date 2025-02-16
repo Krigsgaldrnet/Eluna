@@ -2993,7 +2993,12 @@ namespace LuaGlobalFunctions
         { "CreateInt64", &LuaGlobalFunctions::CreateLongLong },
         { "CreateUint64", &LuaGlobalFunctions::CreateULongLong },
         { "StartGameEvent", &LuaGlobalFunctions::StartGameEvent },
-        { "StopGameEvent", &LuaGlobalFunctions::StopGameEvent }
+        { "StopGameEvent", &LuaGlobalFunctions::StopGameEvent },
+
+        // Unimplemented
+        { "RegisterPlayerbotAIEvent", METHOD_REG_NONE },
+        { "ClearPlayerbotAIEvents", METHOD_REG_NONE }
+
     };
 }
 #endif

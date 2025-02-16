@@ -34,6 +34,9 @@
 
 // Custom methods
 #include "CustomMethods.h"
+#if defined ELUNA_PLAYERBOTS
+#include "PlayerbotAIMethods.h"
+#endif
 
 void RegisterMethods(Eluna* E)
 {
@@ -56,6 +59,11 @@ void RegisterMethods(Eluna* E)
     ElunaTemplate<Player>::SetMethods(E, LuaWorldObject::WorldObjectMethods);
     ElunaTemplate<Player>::SetMethods(E, LuaUnit::UnitMethods);
     ElunaTemplate<Player>::SetMethods(E, LuaPlayer::PlayerMethods);
+
+#if defined ELUNA_PLAYERBOTS
+    ElunaTemplate<PlayerbotAI>::Register(E, "PlayerbotAI");
+    ElunaTemplate<PlayerbotAI>::SetMethods(E, LuaPlayerbotAI::PlayerbotAIMethods);
+#endif
 
     ElunaTemplate<Creature>::Register(E, "Creature");
     ElunaTemplate<Creature>::SetMethods(E, LuaObject::ObjectMethods);

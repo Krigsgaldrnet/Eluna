@@ -3746,7 +3746,20 @@ namespace LuaPlayer
             ChatHandler(player->GetSession()).ExecuteCommand(command);
         return 0;
     }
-    
+
+#if defined ELUNA_PLAYERBOTS
+    /**
+     * Returns [PlayerbotAI]
+     *
+     * @return int32 standingPos
+     */
+    int GetPlayerbotAI(Eluna* E, Player* player)
+    {
+        E->Push(player->GetPlayerbotAI());
+        return 1;
+    }
+#endif
+
     ElunaRegister<Player> PlayerMethods[] =
     {
         // Getters
@@ -3830,6 +3843,9 @@ namespace LuaPlayer
         { "GetShieldBlockValue", METHOD_REG_NONE },
 #endif
         { "GetMailCount", &LuaPlayer::GetMailCount },
+#if defined ELUNA_PLAYERBOTS
+        { "GetPlayerbotAI", &LuaPlayer::GetPlayerbotAI },
+#endif
 
         // Setters
         { "AdvanceSkillsToMax", &LuaPlayer::AdvanceSkillsToMax },

@@ -24,6 +24,9 @@ ElunaConstrainedObjectRef<BattleGround> GetWeakPtrFor(BattleGround const* obj) {
 ElunaConstrainedObjectRef<Group> GetWeakPtrFor(Group const* obj) { return { obj->GetWeakPtr(), nullptr }; }
 ElunaConstrainedObjectRef<Guild> GetWeakPtrFor(Guild const* obj) { return { obj->GetWeakPtr(), nullptr }; }
 ElunaConstrainedObjectRef<Map> GetWeakPtrFor(Map const* obj) { return { obj->GetWeakPtr(), obj }; }
+#if defined ELUNA_PLAYERBOTS
+ElunaConstrainedObjectRef<PlayerbotAI> GetWeakPtrFor(PlayerbotAI const* obj) { return { obj->GetWeakPtr(), nullptr }; }
+#endif
 ElunaConstrainedObjectRef<Object> GetWeakPtrForObjectImpl(Object const* obj)
 {
     if (obj->isType(TYPEMASK_WORLDOBJECT))

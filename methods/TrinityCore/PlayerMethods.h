@@ -4181,7 +4181,8 @@ namespace LuaPlayer
         { "UpdateHonor", METHOD_REG_NONE }, // classic only
         { "ResetHonor", METHOD_REG_NONE }, // classic only
         { "ClearHonorInfo", METHOD_REG_NONE }, // classic only
-        { "GainSpellComboPoints", METHOD_REG_NONE } // not implemented
+        { "GainSpellComboPoints", METHOD_REG_NONE }, // not implemented
+        { "GetPlayerbotAI", METHOD_REG_NONE } // not implemented
     };
 };
 #endif

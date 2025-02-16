@@ -3044,10 +3044,13 @@ namespace LuaGlobalFunctions
         { "StartGameEvent", &LuaGlobalFunctions::StartGameEvent },
         { "StopGameEvent", &LuaGlobalFunctions::StopGameEvent },
 
-        // unimplemented
+        // Unimplemented
         { "WorldDBQueryAsync", METHOD_REG_NONE },
         { "CharDBQueryAsync", METHOD_REG_NONE },
-        { "AuthDBQueryAsync", METHOD_REG_NONE }
+        { "AuthDBQueryAsync", METHOD_REG_NONE },
+        { "RegisterPlayerbotAIEvent", METHOD_REG_NONE },
+        { "ClearPlayerbotAIEvents", METHOD_REG_NONE }
+		
     };
 }
 #endif

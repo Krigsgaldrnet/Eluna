@@ -100,6 +100,10 @@ typedef VehicleInfo Vehicle;
 #endif
 #endif
 
+#if defined ELUNA_PLAYERBOTS
+class PlayerbotAI;
+#endif
+
 struct lua_State;
 class EventMgr;
 class ElunaObject;
@@ -109,6 +113,9 @@ template<typename K> class BindingMap;
 template<typename T> struct EventKey;
 template<typename T> struct EntryKey;
 template<typename T> struct UniqueObjectKey;
+#if defined ELUNA_PLAYERBOTS
+template<typename T> struct StringKey;
+#endif
 
 struct LuaScript
 {
@@ -245,6 +252,9 @@ public:
 
     BindingMap< EventKey<Hooks::ServerEvents> >*     ServerEventBindings;
     BindingMap< EventKey<Hooks::PlayerEvents> >*     PlayerEventBindings;
+#if defined ELUNA_PLAYERBOTS
+    BindingMap< StringKey<Hooks::PlayerbotAIEvents> >* PlayerbotAIEventBindings;
+#endif
     BindingMap< EventKey<Hooks::GuildEvents> >*      GuildEventBindings;
     BindingMap< EventKey<Hooks::GroupEvents> >*      GroupEventBindings;
     BindingMap< EventKey<Hooks::VehicleEvents> >*    VehicleEventBindings;
@@ -333,7 +343,11 @@ public:
 #if !defined TRACKABLE_PTR_NAMESPACE
     uint64 GetCallstackId() const { return callstackid; }
 #endif
-    int Register(uint8 reg, uint32 entry, ObjectGuid guid, uint32 instanceId, uint32 event_id, int functionRef, uint32 shots);
+    int Register(uint8 reg, uint32 entry, ObjectGuid guid, uint32 instanceId, uint32 event_id, int functionRef, uint32 shots
+#if defined ELUNA_PLAYERBOTS
+    , std::string qualifier = ""
+#endif
+    );
     void UpdateEluna(uint32 diff);
 
     // Checks
@@ -512,6 +526,13 @@ public:
     void OnMapChanged(Player* pPlayer);
     void HandleGossipSelectOption(Player* pPlayer, uint32 menuId, uint32 sender, uint32 action, const std::string& code);
     void OnAchievementComplete(Player* pPlayer, uint32 achievementId);
+
+#if defined ELUNA_PLAYERBOTS
+    /* PlayerbotAI*/
+    void OnUpdateAI(PlayerbotAI* pPlayer, std::string botName);
+    void OnTriggerCheck(PlayerbotAI* ai, std::string triggerName, bool enabled);
+    void OnActionExecute(PlayerbotAI* ai, std::string action, bool success);
+#endif
 
 #if ELUNA_EXPANSION >= EXP_WOTLK
     /* Vehicle */

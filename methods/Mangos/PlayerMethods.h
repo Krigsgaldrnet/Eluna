@@ -3979,7 +3979,8 @@ namespace LuaPlayer
         { "CanRewardQuest", METHOD_REG_NONE }, // not implemented
         { "RunCommand", METHOD_REG_NONE }, // not implemented
         { "HasRecruited", METHOD_REG_NONE }, // not implemented
-        { "IsRecruited", METHOD_REG_NONE } // not implemented
+        { "IsRecruited", METHOD_REG_NONE }, // not implemented
+        { "GetPlayerbotAI", METHOD_REG_NONE } // not implemented
     };
 };
 #endif
